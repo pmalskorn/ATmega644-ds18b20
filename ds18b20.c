@@ -33,6 +33,7 @@ uint8_t ds18b20_crc_scratchpad(scratchpad_t *sp)
 	return ds18b20_checkcrc(data,9);
 }
 
+
 uint8_t ds18b20_crc_rom(rom_t rom)
 {
 	uint8_t data[8];
@@ -80,6 +81,7 @@ void ds18b20_convert_t(onewire_t *ow){
 	onewire_write_byte(ow, COVERT_T);
 	while(!onewire_read_bit(ow));
 }
+
 
 void ds18b20_write_scratchpad(onewire_t *ow, scratchpad_t *sp){
 	onewire_write_byte(ow, WRITE_SCRATCHPAD);
