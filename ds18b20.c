@@ -43,6 +43,7 @@ uint8_t ds18b20_crc_rom(rom_t rom)
 	return ds18b20_checkcrc(data,8);
 }
 
+
 // ROM Commmands
 rom_t ds18b20_read_rom(onewire_t *ow)
 {
@@ -73,20 +74,21 @@ void ds18b20_skip_rom(onewire_t *ow){
 	onewire_write_byte(ow, SKIP_ROM);
 }
 
+
 // Function Commands
 void ds18b20_convert_t(onewire_t *ow){
-
 	onewire_write_byte(ow, COVERT_T);
-	while(onewire_read_bit(ow));
+	while(!onewire_read_bit(ow));
 }
 
 void ds18b20_write_scratchpad(onewire_t *ow, scratchpad_t *sp){
-	onewire_write_byte(ow, READ_SCRATCHPAD);
+	onewire_write_byte(ow, WRITE_SCRATCHPAD);
 	
 	onewire_write_byte(ow, sp->th);
 	onewire_write_byte(ow, sp->tl);
 	onewire_write_byte(ow, sp->config);
 }
+
 
 scratchpad_t ds18b20_read_scratchpad(onewire_t *ow){
 
@@ -104,4 +106,15 @@ scratchpad_t ds18b20_read_scratchpad(onewire_t *ow){
 	sp.crc = onewire_read_byte(ow);
 	
 	return sp;
+}
+
+
+void ds18b20_copy_scratchpad(onewire_t *ow){
+	onewire_write_byte(ow,COPY_SCRATCHPAD);
+}
+
+
+void ds18b20_recall_eeprom(onewire_t *ow){
+	onewire_write_byte(ow,RECALL_E2);
+	while(!onewire_read_bit(ow));
 }
