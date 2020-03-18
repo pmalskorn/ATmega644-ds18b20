@@ -43,14 +43,14 @@ uint8_t ds18b20_crc_rom	(rom_t rom);
 // ROM Commmands
 void	ds18b20_search_rom(onewire_t *ow);
 rom_t	ds18b20_read_rom(onewire_t *ow);
-void	ds18b20_match_rom(onewire_t *ow);
+void	ds18b20_match_rom(onewire_t *ow, rom_t rom);
 void	ds18b20_skip_rom(onewire_t *ow);
 void	ds18b20_alarm_search(onewire_t *ow);
 
 
 // Function Commands
 void			ds18b20_convert_t(onewire_t *ow);
-void			ds18b20_write_scratchpad(onewire_t *ow);
+void			ds18b20_write_scratchpad(onewire_t *ow, scratchpad_t *sp);
 scratchpad_t	ds18b20_read_scratchpad(onewire_t *ow);
 void			ds18b20_copy_scratchpad(onewire_t *ow);
 void			ds18b20_recall_eeprom(onewire_t *ow);
